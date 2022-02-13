@@ -1,4 +1,4 @@
-class Ray {
+class Rays {
 	constructor(angle) {
 		this.point1 = { x: 0, y: 0 };
 		this.point2 = { x: 0, y: 0 };

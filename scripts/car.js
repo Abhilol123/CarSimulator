@@ -1,5 +1,5 @@
 class Car {
-	constructor(x, y) {
+	constructor(x, y, noOfRays) {
 		this.x = x;
 		this.y = y;
 		this.angle = 0;
@@ -13,12 +13,12 @@ class Car {
 		this.maxVelocity = 4;
 		this.maxAngVelocity = 0.1;
 		this.rayLength = w + h;
-		this.noOfRays = 100;
+		this.noOfRays = noOfRays;
 		this.ray = [];
 
 		let ang = 0;
 		for (let i = 0; i < this.noOfRays; i++) {
-			this.ray.push(new Ray(ang));
+			this.ray.push(new Rays(ang));
 			ang += 2 * Math.PI / this.noOfRays;
 		}
 	}

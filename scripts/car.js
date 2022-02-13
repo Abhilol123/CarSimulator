@@ -15,6 +15,7 @@ class Car {
 		this.rayLength = w + h;
 		this.noOfRays = noOfRays;
 		this.ray = [];
+		this.score = 0;
 
 		let ang = 0;
 		for (let i = 0; i < this.noOfRays; i++) {
@@ -71,6 +72,8 @@ class Car {
 		this.boundary[3].point1.y = this.y + this.dia * Math.cos(+this.alphaAngle - this.angle + Math.PI);
 		this.boundary[3].point2.x = this.x + this.dia * Math.sin(-this.alphaAngle - this.angle);
 		this.boundary[3].point2.y = this.y + this.dia * Math.cos(-this.alphaAngle - this.angle);
+
+		this.score += this.velocity;
 
 		for (let i = 0; i < this.ray.length; i++) {
 			this.ray[i].point1.x = this.x;

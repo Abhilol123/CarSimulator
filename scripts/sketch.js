@@ -5,7 +5,7 @@ const initialYPos = h / 2;
 const numberOfRays = 50;
 const stopIfCollision = true;
 
-let car1;
+let car;
 let temp = [{ x: 0, y: 0 }, { x: 0, y: 0 }];
 let temp1 = { x: 0, y: 0 };
 let notPressed = true;
@@ -13,7 +13,7 @@ let boundary = [];
 
 function setup() {
 	createCanvas(w, h);
-	car1 = new Car(initialXPos, initialYPos, numberOfRays);
+	car = new Car(initialXPos, initialYPos, numberOfRays);
 	boundary.push(new Boundary(0, 0, w, 0));
 	boundary.push(new Boundary(w, 0, w, h));
 	boundary.push(new Boundary(w, h, 0, h));
@@ -28,31 +28,31 @@ function draw() {
 		switch (key) {
 			case "w":
 			case "ArrowUp":
-				car1.gas();
+				car.gas();
 				break;
 			case "s":
 			case "ArrowDown":
-				car1.brake();
+				car.brake();
 				break;
 			case "a":
 			case "ArrowLeft":
-				car1.rotateLeft();
+				car.rotateLeft();
 				break;
 			case "d":
 			case "ArrowRight":
-				car1.rotateRight();
+				car.rotateRight();
 				break;
 			default:
-				car1.angVelocity = 0;
+				car.angVelocity = 0;
 				break;
 		}
 	} else {
-		car1.angVelocity = 0;
+		car.angVelocity = 0;
 	}
 
 	// draw everything
-	car1.update();
-	car1.draw();
+	car.update();
+	car.draw();
 	for (let i = 0; i < boundary.length; i++) {
 		boundary[i].draw(255, 255, 255, 255);
 	}
@@ -60,7 +60,7 @@ function draw() {
 	// check for collision
 	for (let i = 0; i < boundary.length; i++) {
 		for (let j = 0; j < 4; j++) {
-			if (car1.boundary[j].touch(boundary[i])) {
+			if (car.boundary[j].touch(boundary[i])) {
 				if (stopIfCollision) noLoop();
 			}
 		}
@@ -69,6 +69,7 @@ function draw() {
 }
 
 function mousePressed() {
+	// add boundary
 	if (notPressed) {
 		temp1.x = mouseX;
 		temp1.y = mouseY;
